@@ -1,3 +1,5 @@
+import json
+
 def login():
     a = input("请输入账号").split()
     b = input("请输入密码").split()
@@ -79,7 +81,17 @@ def system(a, user):
         print("请输入界面可选择的系统的编号")
 
 def addsystem():
-    pass
+    product = input('请输入商品名称：').strip()
+    count = input('请输入商品数量：').strip()
+    price = input('请输入商品价格：').strip()
+    filename = 'D:\learn\大二第二学期\goods.json'
+
+    try:
+        with open(filename, "a+", encoding="UTF-8") as f_obj:
+            pass
+    except:
+        pass
+
 
 def checksystem():
     pass
