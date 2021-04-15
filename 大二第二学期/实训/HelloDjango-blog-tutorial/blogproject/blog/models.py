@@ -28,7 +28,7 @@ class Tag(models.Model):
 
 class Post(models.Model):
     title = models.CharField("标题", max_length=70)  # 标题
-    body = models.TextField("正文")  # 正文
+    body = models.TextField()  # 正文
     created_time = models.DateTimeField('创建时间', default=timezone.now)
     # 创建时间 timezone.now 是 django 提供的工具函数，返回当前时间。
     modified_time = models.DateTimeField("最后一次修改时间")  # 最后一次修改时间
@@ -53,3 +53,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
     # 返回网页的URL
+
+
+
+
