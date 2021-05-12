@@ -10,6 +10,7 @@ def index(request):
     return render(request, 'blog/index.html', context={'post_list': post_list})
     # 传参数到templates\blog\index.html
     # 参数模板位置，需要替换的变量
+    # 首页代码
 
 
  # Create your views here.

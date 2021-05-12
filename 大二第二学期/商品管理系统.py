@@ -1,10 +1,10 @@
-import json
-import os
+product_list = []
+product_name = ["名称:", "编号:", "价格:", "数量:"]
 
 
-def login():
-    a = input("请输入账号")
-    b = input("请输入密码")
+def login():  # 账号验证功能
+    a = input("请输入账号：")
+    b = input("请输入密码：")
     if a == "admin":
         if b == "123":
             print("登陆成功")
@@ -24,7 +24,7 @@ def login():
         return 0
 
 
-def admininterface():
+def admininterface():  # 管理人员界面
     print("\n\n\n\n")
     print("**************************")
     print("********商品管理系统********")
@@ -36,14 +36,14 @@ def admininterface():
     print("**************************")
     while True:
         try:
-            a = int(input("输入数字进入相应系统"))
+            a = int(input("输入数字进入相应系统："))
             break
         except:
             print("请输入数字。如像添加商品，输入1即可。")
     return a
 
 
-def userinterface():
+def userinterface():  # 用户界面
     print("\n\n\n\n")
     print("**************************")
     print("********商品管理系统********")
@@ -52,14 +52,14 @@ def userinterface():
     print("**************************")
     while True:
         try:
-            a = int(input("输入数字进入相应系统"))
+            a = int(input("输入数字进入相应系统："))
             break
         except:
             print("请输入数字。如像添加商品，输入1即可。")
     return a
 
 
-def system(a, user):
+def system(a, user):  # 跳转系统
     if user == 1 and (0 <= a <= 4):
         if a == 1:
             addsystem()
@@ -86,37 +86,51 @@ def system(a, user):
         print("请输入界面可选择的系统的编号")
 
 
-def addsystem():
+def addsystem():  # 添加系统
+    numbers = input("请输入商品编号：").strip()
     product = input('请输入商品名称：').strip()
     count = input('请输入商品数量：').strip()
     price = input('请输入商品价格：').strip()
-    filename = 'D:\learn\大二第二学期\goods.json'
-
-    with open(filename, "w", encoding="UTF-8") as f_obj:
-        f_obj.seek(0)
-        products = json.load(f_obj)
+    filename = 'goods.txt'
+    with open(filename, "a+", encoding="UTF-8") as f_obj:
         if product == '':
             print('商品名称不能为空')
-        elif product in products:
-            print('商品已存在')
         elif not count.isdigit():
             print('商品数量必须为正整数')
-        elif not price.isdigit():
-            print('商品价格必须为正整数')
+        elif not float(price) >= 0:
+            print('商品价格必须为正数')
         else:
-            f_obj[product] = {"数量": float(count), "价钱": int(price)}
             f_obj.seek(0)
-            f_obj.truncate()
-            json.dump(product, f_obj, ensure_ascii=False, indent=4)
+            product_dict = {
+                "名称": product,
+                "编号": numbers,
+                "数量": count,
+                "价钱": price
+            }
+            product_list.append(product_dict)
+            for i in product_list:
+                for j, k in i.items():
+                    f_obj.write(j + ":" + str(k))
+                    f_obj.write("\t")
+                f_obj.write("\n")
+            print("添加'" + product + "'成功，价格为" + price + "元，数量为" + count)
 
 
 def checksystem():
-    pass
-
+    filename = 'goods.txt'
+    with open(filename, "r", encoding="UTF-8") as f_obj:
+        print("""
+           产品信息如下：\n
+产品名称		编号	    数量	    价格(元)
+            """)
+        for line in f_obj.readlines():
+            line = line.strip()
+            print(line)
 
 def designsystem():
-    pass
-
+    filename = 'goods.txt'
+    with open(filename, "r", encoding="UTF-8") as f_obj:
+        pass
 
 def delsystem():
     pass

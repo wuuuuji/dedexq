@@ -2,5 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/python二级练习题/city.csv" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/大二第二学期/goods.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/测试堆/json测试.py" charset="UTF-8" />
   </component>
 </project>
