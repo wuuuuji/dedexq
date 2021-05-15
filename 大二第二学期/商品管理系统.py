@@ -116,7 +116,7 @@ def addsystem():  # 添加系统
             print("添加'" + product + "'成功，价格为" + price + "元，数量为" + count)
 
 
-def checksystem():
+def checksystem():  # 查询系统
     filename = 'goods.txt'
     with open(filename, "r", encoding="UTF-8") as f_obj:
         print("""
@@ -127,10 +127,30 @@ def checksystem():
             line = line.strip()
             print(line)
 
-def designsystem():
+
+def designsystem():  # 修改系统
+    def design_goods(line):
+        print("1.产品名称  2.数量  3.价格  0.退出")
+        stnumber = int(input("请输入数字选择你要的操作:"))
+        if not stnumber.isdigit():
+            print("请输入正整数")
+        elif 0 <= stnumber <= 3:
+            print("请输入正确的数字操作")
+        elif stnumber == 0:
+            pass
+        else:
+            a = input("输入你修改后的值")
+
+
     filename = 'goods.txt'
-    with open(filename, "r", encoding="UTF-8") as f_obj:
-        pass
+    a = input("输入编号，确定要修改的商品")
+    b = "编号:" + a
+    with open(filename, "r+", encoding="UTF-8") as f_obj:
+        while True:
+            line = f_obj.readline()
+            if b in line:
+                design_goods(line)
+
 
 def delsystem():
     pass
