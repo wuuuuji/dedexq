@@ -130,6 +130,7 @@ def checksystem():  # 查询系统
 
 def designsystem():  # 修改系统
     def design_goods(line):
+        list_words = line.split()
         print("1.产品名称  2.数量  3.价格  0.退出")
         stnumber = int(input("请输入数字选择你要的操作:"))
         if not stnumber.isdigit():
@@ -140,17 +141,26 @@ def designsystem():  # 修改系统
             pass
         else:
             a = input("输入你修改后的值")
-
+            if stnumber == 1:
+                list_words[0] = "名称:" + a
+            elif stnumber == 2:
+                list_words[2] = "数量:" + a
+            elif stnumber == 3:
+                list_words[3] = "价钱:" + a
+        str_words = "\t".join(list_words)
+        return str_words
 
     filename = 'goods.txt'
     a = input("输入编号，确定要修改的商品")
     b = "编号:" + a
+    tem = 0
     with open(filename, "r+", encoding="UTF-8") as f_obj:
         while True:
             line = f_obj.readline()
             if b in line:
-                design_goods(line)
+                xgh_list = design_goods(line)
 
+            tem += 1
 
 def delsystem():
     pass
