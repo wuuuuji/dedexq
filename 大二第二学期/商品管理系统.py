@@ -111,7 +111,7 @@ def addsystem():  # 添加系统
             for i in product_list:
                 for j, k in i.items():
                     f_obj.write(j + ":" + str(k))
-                    f_obj.write("\t")
+                    f_obj.write("   ")
                 f_obj.write("\n")
             print("添加'" + product + "'成功，价格为" + price + "元，数量为" + count)
 
@@ -129,13 +129,18 @@ def checksystem():  # 查询系统
 
 
 def designsystem():  # 修改系统
+    filename = 'goods.txt'
+    a = input("输入编号，确定要修改的商品")
+    b = "编号:" + a
+    lines = []
+
     def design_goods(line):
         list_words = line.split()
         print("1.产品名称  2.数量  3.价格  0.退出")
         stnumber = int(input("请输入数字选择你要的操作:"))
-        if not stnumber.isdigit():
+        if stnumber <= 0:
             print("请输入正整数")
-        elif 0 <= stnumber <= 3:
+        elif not 0 <= stnumber <= 3:
             print("请输入正确的数字操作")
         elif stnumber == 0:
             pass
@@ -150,20 +155,38 @@ def designsystem():  # 修改系统
         str_words = "\t".join(list_words)
         return str_words
 
-    filename = 'goods.txt'
-    a = input("输入编号，确定要修改的商品")
-    b = "编号:" + a
-    tem = 0
-    with open(filename, "r+", encoding="UTF-8") as f_obj:
-        while True:
-            line = f_obj.readline()
-            if b in line:
-                xgh_list = design_goods(line)
+    with open(filename, "r", encoding="UTF-8") as f_obj:
+        for line in f_obj.readlines():
+            if line != "\n":
+                lines.append(line)
+        f_obj.close()
 
-            tem += 1
+    with open(filename, "w", encoding="UTF-8") as f:
+        for line in lines:
+            if b in line:
+                line = design_goods(line);
+                f.write("%s\n" % line)
+            else:
+                f.write("%s" % line)
+
 
 def delsystem():
-    pass
+    print("1.产品名称  2.数量  3.价格  0.退出")
+    while True:
+        do_number = input("请输入你要选择的操作：")
+        if do_number.isdigit():
+            do_number = int(do_number)
+            if 0 < do_number < 4:
+                do_name = input("具体的值是：")
+                break
+
+    def switch(do_number, do_name):
+        for i in product_list:
+            if i[product_name[do_number - 1]] == do_name:  # 遍历列表中的字典的值与之作比较
+                product_list.remove(i)
+                print("删除成功！")
+
+    switch(do_number, do_name)
 
 
 def main():
