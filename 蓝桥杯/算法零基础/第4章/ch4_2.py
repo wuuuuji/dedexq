@@ -12,6 +12,7 @@ class Queue():
         return len(self.queue)
 
     def dequeue(self):
+        """读取队列"""
         if len(self.queue):
             return self.queue.pop()
         return "队列是空的"
