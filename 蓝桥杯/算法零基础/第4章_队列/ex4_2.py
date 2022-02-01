@@ -18,4 +18,3 @@ a = ['汉堡', '薯条', '可乐']
 for i in a:
     q.enqueue(i)
 print("队列输出")
-q

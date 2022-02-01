@@ -24,7 +24,8 @@ mlp_hw = MLPClassifier(solver='lbfgs',
                        hidden_layer_sizes=[100, 100],
                        activation='relu',
                        alpha=1e-5,
-                       random_state=62)
+                       random_state=62,
+                       max_iter=10000)
 # 使用数据训练神经网络模型
 mlp_hw.fit(X_train, y_train)
 print('\n\n\n')
