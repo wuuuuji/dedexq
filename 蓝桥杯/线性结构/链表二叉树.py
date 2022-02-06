@@ -40,9 +40,9 @@ class Node():
     def postorder(self):
         """后序打印"""
         if self.left:  # 如果左节点存在
-            self.left.postorder()  # 递归调用下一层
+            self.left.preorder()  # 递归调用下一层
         if self.right:  # 如果右节点存在
-            self.right.postorder()  # 递归调用下一层
+            self.right.preorder()  # 递归调用下一层
         print(self.data)
 
     def search(self, val):
@@ -57,6 +57,25 @@ class Node():
             return self.right.search(val)  # 递归继续往右子树进行寻找
         else:
             return str(val) + ' 找到了 '
+
+    def count(self):
+        """二叉树的叶节点"""
+        global num
+        if self.left:  # 如果左子节点存在
+            self.left.count()  # 递归调用下一层
+        if self.left is None and self.right is None:
+            num += 1
+        if self.right:  # 如果右子节点存在
+            self.right.count()  # 递归调用下一层
+
+    def depth(self):
+        """二叉树的深度"""
+        current_depth = 0
+        if self.left:
+            current_depth = max(current_depth, self.left.depth())
+        if self.right:
+            current_depth = max(current_depth, self.right.depth())
+        return current_depth+1
 
 
 class Delete_Node():
@@ -96,13 +115,21 @@ class Delete_Node():
         return node
 
 
+num = 0
 tree = Node()
 datas = [10, 5, 21, 9, 13, 28, 3, 4, 1, 17, 32]
 for d in datas:
     tree.insert(d)  # 分别插入数据
-tree.inorder()  # 中序打印
+print("所建的二叉树前序打印如下 : ")
+tree.preorder()  # 前序打印
 del_data = 5
-print("删除节点后")
+print("删除节点"+str(del_data)+"后")
 delete_obj = Delete_Node()      # 建立删除节点对象
 result = delete_obj.deleteNode(tree, del_data)      # 删除操作
+print("所建的二叉树中序打印如下 : ")
 result.inorder()  # 中序打印
+tree.count()
+print("叶节点数量 = ", num)
+print("所建的二叉树后序打印如下 : ")
+tree.postorder()
+print("二叉树的深度: " + str(tree.depth()))
