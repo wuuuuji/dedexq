@@ -1,9 +1,9 @@
 class Queens:
     def __init__(self):
         self.queens = size * [-1]
-        self.solve(0)
-        for i in range(size):
-            for j in range(size):
+        self.solve(0)       # 默认皇后位置
+        for i in range(size):       # 从row = 0开始搜寻
+            for j in range(size):       # 绘制结果图
                 if self.queens[i] == j:
                     print('★', end='')
                 else:
