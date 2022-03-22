@@ -1,3 +1,4 @@
+""" 戴克斯特拉算法（有向图） """
 def dijkstra(graph, start):
     visited = []
     index = start
