@@ -1,6 +1,4 @@
-""" 戴克斯特拉算法 """
-
-
+""" 戴克斯特拉算法(无向图) """
 def dijkstra(graph, start):
     visited = []
     index = start

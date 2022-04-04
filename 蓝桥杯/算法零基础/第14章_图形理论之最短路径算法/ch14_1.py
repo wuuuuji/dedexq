@@ -1,4 +1,4 @@
-""" 戴克斯特拉算法（有向图） """
+""" 戴克斯特拉算法(有向图) """
 def dijkstra(graph, start):
     visited = []
     index = start
@@ -9,7 +9,7 @@ def dijkstra(graph, start):
         visited.append(index)
         for i in graph[index]:
             new_cost = nodes[index] + graph[index][i]   # 新路径距离
-            if new_cost< nodes[i]:  # 新路径如果比较段
+            if new_cost < nodes[i]:  # 新路径如果比较段
                 nodes[i] = new_cost     # 采用新路径
 
         next = INF
