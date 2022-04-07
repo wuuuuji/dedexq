@@ -6,7 +6,7 @@ def greedy(th):
     things_list = []
     things_list.append(th[length - 1])
     weight = th[length - 1][1][1]
-    for i in range(length -1, -1, -1):
+    for i in range(length - 1, -1, -1):
         if th[i][1][1] + weight <= max_wight:
             things_list.append(th[i])
             weight += th[i][1][1]
