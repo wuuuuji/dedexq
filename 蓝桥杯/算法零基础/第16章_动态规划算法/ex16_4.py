@@ -1,9 +1,9 @@
 def knapsack(bg, w, val):
     n = len(val)
-    table = [[0 for x in range(bg+1)] for x in range(n+1)]  # 最初化表格
+    table = [[0 for x in range(bg+1)] for x in range(n+1)]
     items = [[[] for x in range(bg+1)] for x in range(n+1)]
     for r in range(n+1):
-        for c in range(bg + 1):
+        for c in range(bg+1):
             if r == 0 or c == 0:
                 table[r][c] = 0
             elif w[r-1] <= c:
@@ -21,15 +21,15 @@ def knapsack(bg, w, val):
                     table[r][c] = pre
                     items[r][c] = pre_items
             else:
-                table[r][c] = table[r-1][c]
-                items[r][c] = items[r-1][c]
+                table[r][c] = table[r - 1][c]
+                items[r][c] = items[r - 1][c]
     return items, table[n][bg]
 
 
-data = ['释迦', '西瓜', '玉荷包', '苹果', '黑金刚', '西红柿']
-value = [800, 200, 600, 700, 400, 100]
-weight = [5, 3, 2, 2, 3, 1]
-bag_weight = 5  # 背包可容纳重量
-items, total_value = knapsack(bag_weight, weight, value)
+data = ['颐和园', '天坛', '故宫', '万里长城', '圆明园']
+value = [7, 6, 9, 9, 8]
+weight = [1, 1, 2, 4, 1]
+max_weight = 4
+items, total_value = knapsack(max_weight, weight, value)
 print('最高价值 : ', total_value)
-print('商品组合 : ', items[len(data)][bag_weight])
+print('商品组合 : ', items[len(data)][max_weight])
